@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+* {
+    font-family: 'Tajawal', sans-serif!important;
+}
+
+body {
+    min-width: 300px;
+}
+
+.notyf__message {
+    padding-right: 10px;
+}
+
+.text-limited {
+    display: inline-block;
+    direction: auto!important;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ltr {
+    direction: ltr!important;
+}
+
+.rtl {
+    direction: rtl !important;
+}
+
+.hr-translatable-content {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.hr-translatable-content::before {
+    content: "العناصر التي ستترجم";
+    display: inline-block;
+    background-color: #d36a1f;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.hr-translatable-content::after {
+    content: "";
+    border-top: 1px solid #e7e7e7;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}

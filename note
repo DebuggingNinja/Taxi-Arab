@@ -1,0 +1,7 @@
+                            @component('components.dashboard.buttons.button-with-properties', [
+                                'properties' => 'data-bs-toggle="modal" data-bs-target="#add-money-modal"',
+                                'route' => '#',
+                                'cssClass' => 'btn-cyan',
+                                'disabled' => false,
+                                'text' => 'اضافة رصيد'
+                            ]) @endcomponent

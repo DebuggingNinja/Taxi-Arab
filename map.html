@@ -1,0 +1,64 @@
+		<html>
+	<head>
+        <style type="text/css" >
+        #datadiv {
+          height:300px !important;
+          overflow-y:scroll;
+        }
+        .mapdiv {
+          width:100%;
+          height:100%;
+        }
+        .ml-btn {
+          position:absolute;
+          top:80px;
+          left:45px;
+        }
+        </style>
+			<script type="text/javascript" src="http://my.maplarge.com/JS"></script>
+
+		<script type="text/javascript">
+			ml.onload(function() {
+				
+                // create our map and hold a reference to it
+                var map=ml.map(document.getElementById('mapdiv'));
+
+                ml.$('.wkt-response').hide();
+
+                // RegionSelect options object
+                // (map) [REQUIRED] reference to map
+                // (callback) [REQUIRED]
+                // (drawingType) [OPTIONAL default circle] either rectangle or circle
+                // (query) [OPTIONAL] If provided it will return an ml.query data set to the callback
+                //   (table) [OPTIONAL] table to query using the drawing
+                //   (take) [OPTIONAL default 1,000] number of rows to return from table query
+                //   (query) [OPTIONAL] reference to a configured ml.query
+                var RegionSelectOptions = {
+                  map: map,
+                  drawingType: 'circle',
+                  callback: function(data) { // data returned will be MapLarge WKT representation of the drawing
+                        // display the results
+                        ml.$('#datadiv').html(ml.util.JsonHighlight(data)); 
+                        ml.$('#datadiv').dialog({"title": "Query Results"});
+                  }
+                };
+
+                // ml.ui.map.RegionSelect takes one parameter, its Option object  
+                var drawCircleForWkt = new ml.ui.map.RegionSelect(RegionSelectOptions);
+
+                // the beginDrawing() function triggers the drawing capabilities on the map.
+                // this is reusable and can be called as many times as needed.
+                ml.$('.ml-btn').on('click', function(e) {
+                  drawCircleForWkt.beginDrawing();
+                });
+			});
+		</script>
+	</head>
+	<body>
+		<div id='mapdiv' class='mapdiv'></div>
+        <button class="ml-btn ml-btn-primary" id="region-select-trigger">
+          Select a Region
+        </button>
+        <div id="datadiv"></div>
+	</body>
+</html>
